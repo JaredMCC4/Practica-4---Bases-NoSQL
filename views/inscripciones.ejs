@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 4 - Inscripciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="app-body">
+    <div class="page-shell">
+        <div class="page-banner">
+            <p class="page-kicker">Mantenimiento de Inscripciones</p>
+            <div class="top-actions">
+                <h2>Inscripciones</h2>
+                <a href="/" class="btn btn-secondary">Volver</a>
+            </div>
+            <p class="page-text">Aquí se puede gestionar las inscripciones a eventos.</p>
+        </div>
+
+        <% if (mensaje == "guardado_exitoso") { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Inscripción guardada exitosamente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <% } %>
+
+        <% if (mensaje == "eliminacion_exitosa") { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Inscripción eliminada exitosamente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <% } %>
+
+        <% if (mensaje == "actualizacion_exitosa") { %>
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                Inscripción actualizada exitosamente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <% } %>
+
+        <div class="panel-card">
+            <div class="card-header">Registrar Inscripción</div>
+            <div class="card-body">
+                <form action="/inscripciones/guardar" method="post">
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label class="form-label">
+                                Participante
+                            </label>
+                            <select name="participanteId" class="form-select" required>
+                                <option value="">Seleccionar Participante</option>
+                                <% participantes.forEach(function(participante) { %>
+                                    <option value="<%= participante._id %>"><%= participante.nombre %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+
+                        <div class="col-md-5 mb-3">
+                            <label class="form-label">
+                                Evento
+                            </label>
+                            <select name="eventoId" class="form-select" required>
+                                <option value="">Seleccionar Evento</option>
+                                <% eventos.forEach(function(evento) { %>
+                                    <option value="<%= evento._id %>"><%= evento.nombre %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <label class="form-label">
+                                Fecha de Inscripción
+                            </label>
+                            <input type="date" name="fecha" class="form-control" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel-card mt-4">
+            <div class="card-header">Buscar Inscripción</div>
+            <div class="card-body">
+                <form action="/inscripciones" method="GET">
+                    <div class="row align-items-end">
+                        <div class="col-md-10 mb-2">
+                            <label class="form-label">
+                                Buscar por Participante o Evento
+                            </label>
+                            <input type="text" name="busqueda" class="form-control" placeholder="Ingrese nombre de participante o evento" value="<%= busqueda %>">
+                        </div>
+
+                        <div class="col-md-2 mb-2">
+                            <button type="submit" class="btn btn-success w-100">Buscar</button>
+                        </div>
+                        <div class="col-md-2 mb-2">
+                            <a href="/inscripciones" class="btn btn-danger w-100">Limpiar</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel-card mt-4">
+            <div class="card-header">
+                Lista de Inscripciones
+            </div>
+            <div class="card-body">
+                <% if (inscripciones.length > 0) { %>
+                    <div class="table-wrap table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Participante</th>
+                                    <th>Evento</th>
+                                    <th>Fecha de Inscripción</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% inscripciones.forEach(function(inscripcion) { %>
+                                    <tr>
+                                        <td><%= inscripcion.nombreParticipante %></td>
+                                        <td><%= inscripcion.nombreEvento %></td>
+                                        <td><%= inscripcion.fecha %></td>
+                                        <td>
+                                            <a href="/inscripciones/editar/<%= inscripcion._id %>" class="btn btn-warning btn-sm">Editar</a>
+                                            <a href="/inscripciones/eliminar/<%= inscripcion._id %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                <% } else { %>
+                    <div class="empty-box">
+                        <p>No hay inscripciones registradas.</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

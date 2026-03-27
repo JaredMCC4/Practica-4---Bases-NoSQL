@@ -1,0 +1,199 @@
+db = db.getSiblingDB("gestion_eventos");
+
+db.participantes.drop();
+db.eventos.drop();
+db.inscripciones.drop();
+
+const participantesResult = db.participantes.insertMany([
+  {
+    nombre: "Jared Chacon",
+    correo: "jaredjosue888@gmail.com",
+    telefono: "8578-0801"
+  },
+  {
+    nombre: "Paula Rubi",
+    correo: "paula@gmail.com",
+    telefono: "8092-3541"
+  },
+  {
+    nombre: "Jose Chacon",
+    correo: "jose@gmail.com",
+    telefono: "6140-8281"
+  },
+  {
+    nombre: "Yulissa Chacon",
+    correo: "yulissa@gmail.com",
+    telefono: "7203-4465"
+  },
+  {
+    nombre: "Paulina Ureña",
+    correo: "paulina@gmail.com",
+    telefono: "8092-3542"
+  },
+  {
+    nombre: "Leidy Azofeifa",
+    correo: "leidy@gmail.com",
+    telefono: "8911-5602"
+  },
+  {
+    nombre: "Jorge Azofeifa",
+    correo: "jorge@gmail.com",
+    telefono: "6802-5589"
+  },
+  {
+    nombre: "Mario Azofeifa",
+    correo: "mario@gmail.com",
+    telefono: "6135-0092"
+  },
+  {
+    nombre: "Daniel Azofeifa",
+    correo: "daniel@gmail.com",
+    telefono: "7804-8344"
+  }
+]);
+
+const eventosResult = db.eventos.insertMany([
+  {
+    nombre: "Bases de Datos SQL",
+    fecha: "2026-04-08",
+    modalidad: "Presencial",
+    cupo: 25
+  },
+  {
+    nombre: "Bases de Datos NoSQL",
+    fecha: "2026-04-15",
+    modalidad: "Virtual",
+    cupo: 30
+  },
+  {
+    nombre: "Programacion Avanzada con C#",
+    fecha: "2026-04-22",
+    modalidad: "Presencial",
+    cupo: 20
+  },
+  {
+    nombre: "Desarrollo de Aplicaciones Web y Patrones",
+    fecha: "2026-05-03",
+    modalidad: "Virtual",
+    cupo: 28
+  },
+  {
+    nombre: "Estructura de Datos",
+    fecha: "2026-05-10",
+    modalidad: "Presencial",
+    cupo: 35
+  },
+  {
+    nombre: "Introduccion a la programacion con Python",
+    fecha: "2026-05-18",
+    modalidad: "Virtual",
+    cupo: 40
+  },
+  {
+    nombre: "Programacion Web con Java Spring Boot",
+    fecha: "2026-05-27",
+    modalidad: "Presencial",
+    cupo: 22
+  },
+  {
+    nombre: "Desarrollo de aplicaciones moviles",
+    fecha: "2026-06-05",
+    modalidad: "Virtual",
+    cupo: 26
+  },
+  {
+    nombre: "Desarrollo de videojuegos",
+    fecha: "2026-06-14",
+    modalidad: "Presencial",
+    cupo: 18
+  },
+  {
+    nombre: "Algebra lineal y calculo",
+    fecha: "2026-06-21",
+    modalidad: "Virtual",
+    cupo: 32
+  }
+]);
+
+db.inscripciones.insertMany([
+  {
+    participanteId: participantesResult.insertedIds[0],
+    eventoId: eventosResult.insertedIds[0],
+    fecha: "2026-04-01"
+  },
+  {
+    participanteId: participantesResult.insertedIds[1],
+    eventoId: eventosResult.insertedIds[1],
+    fecha: "2026-04-02"
+  },
+  {
+    participanteId: participantesResult.insertedIds[2],
+    eventoId: eventosResult.insertedIds[2],
+    fecha: "2026-04-03"
+  },
+  {
+    participanteId: participantesResult.insertedIds[3],
+    eventoId: eventosResult.insertedIds[3],
+    fecha: "2026-04-04"
+  },
+  {
+    participanteId: participantesResult.insertedIds[4],
+    eventoId: eventosResult.insertedIds[4],
+    fecha: "2026-04-05"
+  },
+  {
+    participanteId: participantesResult.insertedIds[5],
+    eventoId: eventosResult.insertedIds[5],
+    fecha: "2026-04-06"
+  },
+  {
+    participanteId: participantesResult.insertedIds[6],
+    eventoId: eventosResult.insertedIds[6],
+    fecha: "2026-04-07"
+  },
+  {
+    participanteId: participantesResult.insertedIds[7],
+    eventoId: eventosResult.insertedIds[7],
+    fecha: "2026-04-08"
+  },
+  {
+    participanteId: participantesResult.insertedIds[8],
+    eventoId: eventosResult.insertedIds[8],
+    fecha: "2026-04-09"
+  },
+  {
+    participanteId: participantesResult.insertedIds[0],
+    eventoId: eventosResult.insertedIds[9],
+    fecha: "2026-04-10"
+  },
+  {
+    participanteId: participantesResult.insertedIds[1],
+    eventoId: eventosResult.insertedIds[4],
+    fecha: "2026-04-11"
+  },
+  {
+    participanteId: participantesResult.insertedIds[2],
+    eventoId: eventosResult.insertedIds[6],
+    fecha: "2026-04-12"
+  },
+  {
+    participanteId: participantesResult.insertedIds[3],
+    eventoId: eventosResult.insertedIds[1],
+    fecha: "2026-04-13"
+  },
+  {
+    participanteId: participantesResult.insertedIds[4],
+    eventoId: eventosResult.insertedIds[7],
+    fecha: "2026-04-14"
+  },
+  {
+    participanteId: participantesResult.insertedIds[5],
+    eventoId: eventosResult.insertedIds[2],
+    fecha: "2026-04-15"
+  }
+]);
+
+db.getCollectionNames();
+db.participantes.countDocuments();
+db.eventos.countDocuments();
+db.inscripciones.countDocuments();

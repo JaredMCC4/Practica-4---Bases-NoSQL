@@ -1,0 +1,159 @@
+:root{
+    --fondo: #f5f1ea;
+    --panel: #fffdf7;
+    --borde: #d9d3c5;
+    --texto: #2f2a30;
+    --muted: #6f664c;
+    --azul: #325c9c;
+    --verde: #3f9a52;
+    --naranja: #c46a2a;
+}
+
+body.app-body,
+body.bg-light{
+    min-height: 100vh;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: 'Nunito', 'Work Sans', 'Open Sans', sans-serif;
+}
+
+.page-shell{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 14px 40px;
+}
+
+.page-banner{
+    padding: 22px;
+    border-radius: 16px;
+    margin-bottom: 22px;
+}
+
+.page-kicker{
+    margin: 0 0 6px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.page-banner,
+.panel-card,
+.menu-box{
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 3px;
+}
+
+.page-kicker,
+.page-text,
+.menu-box p,
+.empty-box {
+    color: var(--muted);
+}
+
+.page-title,
+.top-actions h2,
+.menu-box h3{
+    margin: 0;
+}
+
+.panel-card .card-header{
+    background: #ece1d9;
+    border-bottom: 1px solid var(--borde);
+    font-weight: 700;
+    padding: 5px;
+}
+
+.panel-card .card-body{
+    padding: 22px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.menu-box {
+    display: block;
+    padding: 20px 18px;
+    text-decoration: none;
+    color: var(--texto);
+}
+
+.menu-box.participantes{
+    border-left: 6px solid var(--azul);
+}
+
+.menu-box.eventos{
+    border-left: 6px solid var(--verde);
+}
+
+.menu-box.inscripciones{
+    border-left: 6px solid var(--naranja);
+}
+
+.top-actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    gap:12px;
+}
+
+.btn{
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.btn-primary{
+    background-color: var(--azul);
+    border-color: var(--azul);
+}
+
+.btn-success{
+    background-color: var(--verde);
+    border-color: var(--verde);
+}
+
+.btn-warning{
+    background-color: var(--naranja);
+    border-color: var(--naranja);
+    color: #24201c;
+}
+.btn-secondary{
+    background-color: var(--muted);
+    border-color: var(--muted);
+}
+
+.form-control,
+.form-select,
+.alert,
+.table-wrap,
+.empty-box{
+    border-radius: 12px;
+}
+
+.table-wrap {
+    border: 1px solid var(--borde);
+    overflow: hidden;
+}
+
+.table{
+    margin-bottom: 0;
+}
+
+.table thead.table-dark th{
+    background-color: #45535f;
+    border-color: #45535f;
+}
+
+.empty-box {
+    padding: 18px;
+    border: 1px dashed #b8afa4;
+    background: #f3f1ec;
+}
+
+.panel-card{
+    margin-bottom: 22px;
+    overflow: hidden;
+}

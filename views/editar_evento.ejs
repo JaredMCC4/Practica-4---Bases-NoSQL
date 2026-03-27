@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 4 - Editar Evento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="app-body">
+    <div class="page-shell">
+        <div class="page-banner">
+            <p class="page-kicker">Modificación de Eventos</p>
+            <div class="top-actions">
+                <h2>
+                    Editar Evento
+                </h2>
+                <a href="/eventos" class="btn btn-secondary">Volver</a>
+            </div>
+            <div class="page-text">Se permite cambiar el nombre, fecha, modalidad y cupo del evento.</div>
+        </div>
+        
+            <div class="panel-card">
+                <div class="card-header">Modificar Datos</div>
+                <div class="card-body">
+                    <form action="/eventos/actualizar/<%= evento._id %>" method="POST">
+                        <div class="row">
+                            <div class="col-md-5 mb-3">
+                                <label class="form-label">Nombre</label>
+                                <input type="text" name="nombre" class="form-control" value="<%= evento.nombre %>" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label">Fecha</label>
+                                <input type="date" class="form-control" name="fecha" value="<%=evento.fecha%>" required>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <label class="form-label">Modalidad</label>
+                                <select name="modalidad" class="form-select" required>
+                                    <option value="Presencial" <%= evento.modalidad == "Presencial" ? "selected" : "" %>>Presencial</option>
+                                    <option value="Virtual" <%= evento.modalidad == "Virtual" ? "selected" : "" %>>Virtual</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2 mb-3">
+                                <label class="form-label">Cupo</label>
+                                <input type="number" class="form-control" name="cupo" value="<%= evento.cupo %>" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <a href="/eventos" class="btn btn-danger ms-2">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
